@@ -6,3 +6,4 @@ CREATE TABLE projet (
                         date_fin DATE,
                         budget DECIMAL(10, 2)
 );
+
