@@ -8,7 +8,7 @@ import org.mapstruct.factory.Mappers;
 @Mapper
 public interface ProjetMapper {
     ProjetMapper INSTANCE = Mappers.getMapper(ProjetMapper.class);
-    
+
     projetDto projetToProjetDto(projet projet);
     projet projetDtoToProjet(projetDto projetDto);
 
