@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface TacheMapper {
-    TacheDto toDto(tache tache);
-    tache toEntity(TacheDto tacheDto);
+    TacheDto tacheToTacheDto(tache tache);
+    tache tacheDtoToTache(TacheDto tacheDto);
 
 }
