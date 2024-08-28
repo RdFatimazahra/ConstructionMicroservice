@@ -19,8 +19,8 @@ public class tache {
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long idTache;
-        private Long idProjet;
+        private int idTache;
+        private int idProjet;
         private String description;
         private Date dateDebut;
         private Date dateFin;
