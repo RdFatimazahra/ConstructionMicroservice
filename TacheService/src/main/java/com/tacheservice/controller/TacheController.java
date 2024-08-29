@@ -32,6 +32,12 @@ public class TacheController {
         return ResponseEntity.ok(taches);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<TacheDto> getTacheById(@PathVariable int id) {
+        TacheDto tacheDto = tacheService.getTacheById(id);
+        return ResponseEntity.ok(tacheDto);
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<TacheDto> updateTache(@PathVariable int id, @RequestBody TacheDto tacheDto) {
         TacheDto updatedTache = tacheService.updateTache(id, tacheDto);

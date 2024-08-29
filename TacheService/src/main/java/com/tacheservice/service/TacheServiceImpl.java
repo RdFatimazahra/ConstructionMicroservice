@@ -1,5 +1,6 @@
 package com.tacheservice.service;
 
+import com.tacheservice.ResourceNotFoundException;
 import com.tacheservice.dto.TacheDto;
 import com.tacheservice.mapper.TacheMapper;
 import com.tacheservice.model.tache;
@@ -40,6 +41,14 @@ public class TacheServiceImpl implements TacheService {
         return taches.stream()
                 .map(tacheMapper::tacheToTacheDto)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public TacheDto getTacheById(int id) {
+        tache tache = tacheRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Tache not found with id: " + id));
+
+        return tacheMapper.tacheToTacheDto(tache);
     }
 
     @Override
