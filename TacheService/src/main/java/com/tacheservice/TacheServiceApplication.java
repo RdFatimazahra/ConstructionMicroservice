@@ -13,9 +13,9 @@ public class TacheServiceApplication {
     public static void main(String[] args) {
         SpringApplication.run(TacheServiceApplication.class, args);
     }
-    @Bean
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
+//    @Bean
+//    public RestTemplate restTemplate() {
+//        return new RestTemplate();
+//    }
 
 }
