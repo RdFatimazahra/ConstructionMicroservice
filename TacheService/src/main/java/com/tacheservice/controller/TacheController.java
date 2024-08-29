@@ -17,14 +17,14 @@ public class TacheController {
     @Autowired
     private TacheService tacheService;
 
-    // Créer une nouvelle tâche
+    // Créer une nouvelle tâche Utilisant DTO
     @PostMapping("/projet/{projetId}")
     public ResponseEntity<TacheDto> createTache(@PathVariable int projetId, @RequestBody TacheDto dto) {
         TacheDto createdTache = tacheService.createTache(dto,projetId);
         return ResponseEntity.ok().body(createdTache);
     }
 
-
+//CreateTache method whitout using DTO
 //    @PostMapping("/projet/{projetId}")
 //    public ResponseEntity<tache> createTache(@PathVariable int projetId, @RequestBody tache tacheDto) {
 //        // Assigner l'ID du projet au DTO avant de créer la tâche

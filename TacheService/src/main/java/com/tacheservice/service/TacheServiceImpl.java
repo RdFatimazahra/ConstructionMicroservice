@@ -27,6 +27,7 @@ public class TacheServiceImpl implements TacheService {
 
     @Override
 
+    //CreateTache method using DTO
     public  TacheDto createTache(TacheDto tacheDto, int idProjet) {
         restTemplate.getForObject("http://localhost:8081/api/projets/" + idProjet, Object.class);
         tache tache = tacheMapper.tacheDtoToTache(tacheDto);
@@ -35,6 +36,8 @@ public class TacheServiceImpl implements TacheService {
         return tacheMapper.tacheToTacheDto(savedTache);
 
     }
+
+    //CreateTache whithout using DTO
 //    public tache createTache(tache tache, int idProjet) {
 //        try {
 //            restTemplate.getForObject("http://localhost:8081/api/projets/" + idProjet, Object.class);
