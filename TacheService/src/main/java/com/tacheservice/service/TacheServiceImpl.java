@@ -26,15 +26,24 @@ public class TacheServiceImpl implements TacheService {
     private TacheMapper tacheMapper;
 
     @Override
-    public tache createTache(tache tache, int idProjet) {
-        try {
-            restTemplate.getForObject("http://localhost:8081/api/projets/" + idProjet, Object.class);
-        } catch (Exception e) {
-            throw new IllegalArgumentException("projet non trouve :" + e);
-        }
+
+    public  TacheDto createTache(TacheDto tacheDto, int idProjet) {
+        restTemplate.getForObject("http://localhost:8081/api/projets/" + idProjet, Object.class);
+        tache tache = tacheMapper.tacheDtoToTache(tacheDto);
         tache.setIdProjet(idProjet);
-        return tacheRepository.save(tache);
+        tache savedTache = tacheRepository.save(tache);
+        return tacheMapper.tacheToTacheDto(savedTache);
+
     }
+//    public tache createTache(tache tache, int idProjet) {
+//        try {
+//            restTemplate.getForObject("http://localhost:8081/api/projets/" + idProjet, Object.class);
+//        } catch (Exception e) {
+//            throw new IllegalArgumentException("projet non trouve :" + e);
+//        }
+//        tache.setIdProjet(idProjet);
+//        return tacheRepository.save(tache);
+//    }
     @Override
     public List<TacheDto> getAllTaches() {
         List<tache> taches = tacheRepository.findAll();

@@ -19,12 +19,19 @@ public class TacheController {
 
     // Créer une nouvelle tâche
     @PostMapping("/projet/{projetId}")
-    public ResponseEntity<tache> createTache(@PathVariable int projetId, @RequestBody tache tacheDto) {
-        // Assigner l'ID du projet au DTO avant de créer la tâche
-        tacheDto.setIdProjet(projetId);
-        tache createdTache = tacheService.createTache(tacheDto, projetId);
-        return ResponseEntity.ok(createdTache);
+    public ResponseEntity<TacheDto> createTache(@PathVariable int projetId, @RequestBody TacheDto dto) {
+        TacheDto createdTache = tacheService.createTache(dto,projetId);
+        return ResponseEntity.ok().body(createdTache);
     }
+
+
+//    @PostMapping("/projet/{projetId}")
+//    public ResponseEntity<tache> createTache(@PathVariable int projetId, @RequestBody tache tacheDto) {
+//        // Assigner l'ID du projet au DTO avant de créer la tâche
+//        tacheDto.setIdProjet(projetId);
+//        tache createdTache = tacheService.createTache(tacheDto, projetId);
+//        return ResponseEntity.ok(createdTache);
+//    }
 
     @GetMapping
     public ResponseEntity<List<TacheDto>> getAllTaches() {
