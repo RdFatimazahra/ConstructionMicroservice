@@ -1,11 +1,11 @@
 package com.ressourceservice.repository;
 
-import com.ressourceservice.model.Ressource;
+import com.ressourceservice.model.ressources;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface RessourceRepository extends CrudRepository<Ressource, Integer> {
+public interface RessourceRepository extends CrudRepository<ressources, Integer> {
 
-    List<Ressource> findByIdTache(int idTache);
+    List<ressources> findByIdTache(int idTache);
 }

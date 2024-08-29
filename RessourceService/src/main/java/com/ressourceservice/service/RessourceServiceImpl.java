@@ -2,7 +2,7 @@ package com.ressourceservice.service;
 
 import com.ressourceservice.Dto.RessourceDto;
 import com.ressourceservice.mapper.RessourceMapper;
-import com.ressourceservice.model.Ressource;
+import com.ressourceservice.model.ressources;
 import com.ressourceservice.repository.RessourceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,23 +28,23 @@ public class RessourceServiceImpl implements RessourceService {
         // Ensure the task (tache) exists by calling TacheService
         restTemplate.getForObject("http://localhost:8083/api/taches/" + idTache, Object.class);
 
-        Ressource ressource = ressourceMapper.ressourceDtoToRessource(ressourceDto);
+        ressources ressource = ressourceMapper.ressourceDtoToRessource(ressourceDto);
         ressource.setIdTache(idTache);
-        Ressource savedRessource = ressourceRepository.save(ressource);
+        ressources savedRessource = ressourceRepository.save(ressource);
 
         return ressourceMapper.ressourceToRessourceDto(savedRessource);
     }
 
     @Override
     public RessourceDto getRessourceById(int id) {
-        Ressource ressource = ressourceRepository.findById(id)
+        ressources ressource = ressourceRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Resource not found"));
         return ressourceMapper.ressourceToRessourceDto(ressource);
     }
 
     @Override
     public List<RessourceDto> getAllRessources() {
-        List<Ressource> ressources = (List<Ressource>) ressourceRepository.findAll();
+        List<ressources> ressources = (List<com.ressourceservice.model.ressources>) ressourceRepository.findAll();
         return ressources.stream()
                 .map(ressourceMapper::ressourceToRessourceDto)
                 .collect(Collectors.toList());
@@ -52,7 +52,7 @@ public class RessourceServiceImpl implements RessourceService {
 
     @Override
     public List<RessourceDto> getRessourcesByTacheId(int idTache) {
-        List<Ressource> ressources = ressourceRepository.findByIdTache(idTache);
+        List<ressources> ressources = ressourceRepository.findByIdTache(idTache);
         return ressources.stream()
                 .map(ressourceMapper::ressourceToRessourceDto)
                 .collect(Collectors.toList());
@@ -60,7 +60,7 @@ public class RessourceServiceImpl implements RessourceService {
 
     @Override
     public RessourceDto updateRessource(int id, RessourceDto ressourceDto) {
-        Ressource ressource = ressourceRepository.findById(id)
+        ressources ressource = ressourceRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Resource not found"));
 
         ressource.setNom(ressourceDto.getNom());
@@ -68,13 +68,13 @@ public class RessourceServiceImpl implements RessourceService {
         ressource.setQuantite(ressourceDto.getQuantite());
         ressource.setFournisseur(ressourceDto.getFournisseur());
 
-        Ressource updatedRessource = ressourceRepository.save(ressource);
+        ressources updatedRessource = ressourceRepository.save(ressource);
         return ressourceMapper.ressourceToRessourceDto(updatedRessource);
     }
 
     @Override
     public void deleteRessource(int id) {
-        Ressource ressource = ressourceRepository.findById(id)
+        ressources ressource = ressourceRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Resource not found"));
         ressourceRepository.delete(ressource);
     }

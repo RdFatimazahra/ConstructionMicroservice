@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 
-public class Ressource {
+public class ressources {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idRessource;

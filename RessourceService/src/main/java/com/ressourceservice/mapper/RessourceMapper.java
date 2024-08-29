@@ -2,7 +2,7 @@ package com.ressourceservice.mapper;
 
 
 import com.ressourceservice.Dto.RessourceDto;
-import com.ressourceservice.model.Ressource;
+import com.ressourceservice.model.ressources;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -10,6 +10,6 @@ import org.mapstruct.factory.Mappers;
 public interface RessourceMapper {
     RessourceMapper INSTANCE = Mappers.getMapper(RessourceMapper.class);
 
-    RessourceDto ressourceToRessourceDto(Ressource ressource);
-    Ressource ressourceDtoToRessource(RessourceDto ressourceDto);
+    RessourceDto ressourceToRessourceDto(ressources ressource);
+    ressources ressourceDtoToRessource(RessourceDto ressourceDto);
 }
