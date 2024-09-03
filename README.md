@@ -38,3 +38,5 @@ utilisant des API RESTful sécurisées.
 🔄 Mettre à jour une ressource
 
 🗑️ Supprimer une ressource
+
+j'ai terminé le travail de la premiere partie avec restTemplate et maintenant je passe au Gateway !
