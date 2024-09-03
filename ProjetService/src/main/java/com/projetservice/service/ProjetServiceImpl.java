@@ -1,8 +1,11 @@
 package com.projetservice.service;
 
+import com.projetservice.client.TacheClient;
 import com.projetservice.dto.projetDto;
 import com.projetservice.mapper.ProjetMapper;
-import com.projetservice.model.projet;
+import com.projetservice.model.FullProjectResponse;
+import com.projetservice.model.Taches;
+import com.projetservice.model.Projet;
 import com.projetservice.repository.ProjetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,22 +22,25 @@ public class ProjetServiceImpl implements ProjetService {
     @Autowired
     private ProjetMapper projetMapper;
 
+    @Autowired
+    TacheClient tacheClient;
+
     @Override
     public projetDto createProjet(projetDto projetDto) {
-        projet projetEntity = projetMapper.projetDtoToProjet(projetDto);
-        projet savedProjet = projetRepository.save(projetEntity);
+        Projet projetEntity = projetMapper.projetDtoToProjet(projetDto);
+        Projet savedProjet = projetRepository.save(projetEntity);
         return projetMapper.projetToProjetDto(savedProjet);
     }
 
     @Override
     public projetDto getProjetById(int id) {
-        projet projetEntity = projetRepository.findById(id).orElse(null);
+        Projet projetEntity = projetRepository.findById(id).orElse(null);
         return projetMapper.projetToProjetDto(projetEntity);
     }
 
     @Override
     public List<projetDto> getAllProjets() {
-        List<projet> projets = projetRepository.findAll();
+        List<Projet> projets = projetRepository.findAll();
         return projets.stream()
                 .map(projetMapper::projetToProjetDto)
                 .collect(Collectors.toList());
@@ -42,9 +48,9 @@ public class ProjetServiceImpl implements ProjetService {
 
     @Override
     public projetDto updateProjet(int id, projetDto projetDto) {
-        projet existingProjet = projetRepository.findById(id).orElse(null);
+        Projet existingProjet = projetRepository.findById(id).orElse(null);
         if (existingProjet != null) {
-            projet updatedProjet = projetMapper.projetDtoToProjet(projetDto);
+            Projet updatedProjet = projetMapper.projetDtoToProjet(projetDto);
             updatedProjet.setIdProjet(id); // Ensure the ID remains the same
             projetRepository.save(updatedProjet);
             return projetMapper.projetToProjetDto(updatedProjet);
@@ -56,4 +62,26 @@ public class ProjetServiceImpl implements ProjetService {
     public void deleteProjet(int id) {
         projetRepository.deleteById(id);
     }
+
+    @Override
+    public FullProjectResponse projetWithTaches(int id) {
+        Projet projets = projetRepository.findById(id)
+                .orElse(
+                        Projet.builder()
+                                .nomProjet("NOT_FOUND")
+                                .build()
+                );
+        List<Taches> taches = tacheClient.findAllTachesByProjet(id);
+        return FullProjectResponse.builder()
+                .nomProjet(projets.getNomProjet())
+                .dateDebut(projets.getDateDebut())
+                .dateFin(projets.getDateFin())
+                .description(projets.getDescription())
+                .budget(projets.getBudget())
+                .taches(taches)
+                .build();
+    }
+
+
 }
+

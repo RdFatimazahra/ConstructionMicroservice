@@ -45,6 +45,12 @@ public class TacheController {
         return ResponseEntity.ok(tacheDto);
     }
 
+    @GetMapping("/gateway/{id}")
+    public ResponseEntity<List<TacheDto>> tachesOfProjet(@PathVariable int id) {
+        List<TacheDto> tacheDto = tacheService.getTachesByProjet(id);
+        return ResponseEntity.ok(tacheDto);
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<TacheDto> updateTache(@PathVariable int id, @RequestBody TacheDto tacheDto) {
         TacheDto updatedTache = tacheService.updateTache(id, tacheDto);

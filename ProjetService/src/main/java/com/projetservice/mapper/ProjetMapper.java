@@ -1,15 +1,13 @@
 package com.projetservice.mapper;
 
 import com.projetservice.dto.projetDto;
-import com.projetservice.model.projet;
+import com.projetservice.model.Projet;
 import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface ProjetMapper {
-    ProjetMapper INSTANCE = Mappers.getMapper(ProjetMapper.class);
 
-    projetDto projetToProjetDto(projet projet);
-    projet projetDtoToProjet(projetDto projetDto);
+    projetDto projetToProjetDto(Projet projet);
+    Projet projetDtoToProjet(projetDto projetDto);
 
 }

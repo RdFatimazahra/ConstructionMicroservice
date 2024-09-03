@@ -15,5 +15,5 @@ public class Taches {
     private String description;
     private Date dateDebut;
     private Date dateFin;
-    private Statut statut;
+    private String statut;
 }

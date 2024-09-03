@@ -86,4 +86,12 @@ public class TacheServiceImpl implements TacheService {
 
         tacheRepository.delete(existingTache);
     }
+
+    @Override
+    public List<TacheDto> getTachesByProjet(int idProjet) {
+        List<tache> taches = tacheRepository.findByIdProjet(idProjet);
+        return taches.stream()
+                .map(tacheMapper::tacheToTacheDto)
+                .collect(Collectors.toList());
+    }
 }

@@ -16,4 +16,5 @@ public interface TacheService {
 //    List<TacheDto> getTachesByProjetId(int projetId);
     TacheDto updateTache(int id, TacheDto tacheDto);
     void deleteTache(int id);
+    List<TacheDto> getTachesByProjet(int idProjet);
 }
