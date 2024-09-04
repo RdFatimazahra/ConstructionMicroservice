@@ -1,7 +1,7 @@
 package com.tacheservice.service;
 
 import com.tacheservice.dto.TacheDto;
-import com.tacheservice.model.tache;
+import com.tacheservice.model.FullTachesResponse;
 
 import java.util.List;
 
@@ -17,4 +17,6 @@ public interface TacheService {
     TacheDto updateTache(int id, TacheDto tacheDto);
     void deleteTache(int id);
     List<TacheDto> getTachesByProjet(int idProjet);
+    FullTachesResponse tachWithRessources(int id);
+
 }

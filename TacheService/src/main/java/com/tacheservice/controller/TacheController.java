@@ -2,7 +2,7 @@ package com.tacheservice.controller;
 
 
 import com.tacheservice.dto.TacheDto;
-import com.tacheservice.model.tache;
+import com.tacheservice.model.FullTachesResponse;
 import com.tacheservice.service.TacheService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -49,6 +49,12 @@ public class TacheController {
     public ResponseEntity<List<TacheDto>> tachesOfProjet(@PathVariable int id) {
         List<TacheDto> tacheDto = tacheService.getTachesByProjet(id);
         return ResponseEntity.ok(tacheDto);
+    }
+
+    @GetMapping("/gate/{id}")
+    public ResponseEntity <FullTachesResponse> tachesWithRessources(@PathVariable int id) {
+        FullTachesResponse fullTachesResponse = tacheService.tachWithRessources(id);
+        return ResponseEntity.ok(fullTachesResponse);
     }
 
     @PutMapping("/{id}")

@@ -28,7 +28,7 @@ public class ProjetController {
         return ResponseEntity.ok(projetDto);
     }
 
-    @GetMapping("gateway/{id}")
+    @GetMapping("/gateway/{id}")
     public ResponseEntity<FullProjectResponse> projetWithTaches(@PathVariable int id) {
         FullProjectResponse projetDto = projetService.projetWithTaches(id);
         return ResponseEntity.ok(projetDto);
