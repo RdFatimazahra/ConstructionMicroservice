@@ -74,4 +74,9 @@ public class JwtService {
         byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
         return Keys.hmacShaKeyFor(keyBytes);
     }
+
+    //SecurityMicroservice
+    public void validateToken(final String token) {
+        Jwts.parserBuilder().setSigningKey(getSigningKey()).build().parseClaimsJws(token);
+    }
 }
