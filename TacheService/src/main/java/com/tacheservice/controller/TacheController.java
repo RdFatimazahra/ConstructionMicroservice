@@ -17,6 +17,7 @@ public class TacheController {
     @Autowired
     private TacheService tacheService;
 
+
     // Créer une nouvelle tâche Utilisant DTO
     @PostMapping("/projet/{projetId}")
     public ResponseEntity<TacheDto> createTache(@PathVariable int projetId, @RequestBody TacheDto dto) {
@@ -67,6 +68,11 @@ public class TacheController {
     public ResponseEntity<Void> deleteTache(@PathVariable int id) {
         tacheService.deleteTache(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/projet/{idProjet}")
+    public void deleteTachesByProjetId(@PathVariable int idProjet) {
+        tacheService.deleteTachesByProjetId(idProjet);
     }
 
 }

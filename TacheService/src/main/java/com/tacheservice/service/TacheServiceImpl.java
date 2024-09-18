@@ -34,7 +34,7 @@ public class TacheServiceImpl implements TacheService {
 
     //CreateTache method using DTO
     public  TacheDto createTache(TacheDto tacheDto, int idProjet) {
-        restTemplate.getForObject("http://localhost:8081/api/projets/" + idProjet, Object.class);
+        restTemplate.getForObject("http://localhost:8090/api/projets/" + idProjet, Object.class);
         Tache tache = tacheMapper.tacheDtoToTache(tacheDto);
         tache.setIdProjet(idProjet);
         Tache savedTache = tacheRepository.save(tache);
@@ -116,5 +116,12 @@ public class TacheServiceImpl implements TacheService {
                 .ressources(ressources)
                 .build();
 
+    }
+
+    public void deleteTachesByProjetId(int idProjet) {
+        List<Tache> taches = tacheRepository.findByIdProjet(idProjet);
+        if (taches != null && !taches.isEmpty()) {
+            tacheRepository.deleteAll(taches);
+        }
     }
 }

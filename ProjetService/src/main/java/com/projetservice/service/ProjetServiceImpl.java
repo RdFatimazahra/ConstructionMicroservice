@@ -59,9 +59,20 @@ public class ProjetServiceImpl implements ProjetService {
     }
 
     @Override
+    // Supprimer un projet existant
     public void deleteProjet(int id) {
+
+        try {
+            // D'abord, supprimer les tâches liées à ce projet
+            tacheClient.deleteTachesByProjetId(id);
+        } catch (Exception e) {
+            throw new IllegalStateException("Erreur lors de la suppression des tâches pour l'ID du projet : " + id, e);
+        }
+
+        // Ensuite, supprimer le projet
         projetRepository.deleteById(id);
     }
+
 
     @Override
     public FullProjectResponse projetWithTaches(int id) {

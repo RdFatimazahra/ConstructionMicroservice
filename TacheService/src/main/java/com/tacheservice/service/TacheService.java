@@ -18,5 +18,6 @@ public interface TacheService {
     void deleteTache(int id);
     List<TacheDto> getTachesByProjet(int idProjet);
     FullTachesResponse tachWithRessources(int id);
+    public void deleteTachesByProjetId(int idProjet);
 
 }

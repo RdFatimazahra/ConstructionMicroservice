@@ -14,6 +14,8 @@ public interface TacheClient {
 
     @GetMapping("/gateway/{id}")
     List<Taches> findAllTachesByProjet(@PathVariable int id);
+    @DeleteMapping("/projet/{idProjet}")
+    void deleteTachesByProjetId(@PathVariable int idProjet);
 //    @DeleteMapping("/projet/delete/{id}")
 //    List<Taches> deleteTacheWithProjet(@PathVariable Long id);
 }

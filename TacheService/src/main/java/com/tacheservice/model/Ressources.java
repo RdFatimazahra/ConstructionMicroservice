@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class Ressources {
+    private int idRessource;
     private String nom;
     private int quantite;
     private String type;

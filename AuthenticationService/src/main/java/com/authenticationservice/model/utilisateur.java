@@ -27,6 +27,7 @@ public class utilisateur implements UserDetails {
     private String nom;
     private String email;
     private String password;
+//    private Role role;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

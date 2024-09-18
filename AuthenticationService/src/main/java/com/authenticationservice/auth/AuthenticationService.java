@@ -3,8 +3,10 @@ package com.authenticationservice.auth;
 
 import com.authenticationservice.Repository.UserRepository;
 import com.authenticationservice.config.JwtService;
+import com.authenticationservice.model.Role;
 import com.authenticationservice.model.utilisateur;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.autoconfigure.kafka.KafkaProperties;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -25,11 +27,13 @@ public class AuthenticationService {
         user.setNom(request.getNom());
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
+//        user.setRole(Role.USER);
 
         userRepository.save(user);
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
+//                .role(user.getRole().name())
                 .build();
 
 
@@ -48,6 +52,7 @@ public class AuthenticationService {
         var jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
+//                .role(user.getRole().name())
                 .build();
 
 

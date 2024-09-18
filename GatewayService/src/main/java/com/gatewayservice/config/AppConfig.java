@@ -8,14 +8,13 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 public class AppConfig {
 
-
+//Configuration RestTemplate :
 //    public RestTemplate restTemplate() {
 //        return new RestTemplate();
 //    }
 //}
     @Bean
     public HttpMessageConverters customConverters() {
-        // You can add custom converters here if needed
         return new HttpMessageConverters();
     }
 }

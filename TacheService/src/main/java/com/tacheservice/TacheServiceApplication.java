@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
 
 @EnableFeignClients
 @SpringBootApplication
-//@EnableDiscoveryClient
+@EnableDiscoveryClient
 public class TacheServiceApplication {
 
     public static void main(String[] args) {

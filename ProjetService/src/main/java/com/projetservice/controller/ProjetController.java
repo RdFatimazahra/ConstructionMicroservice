@@ -1,5 +1,6 @@
 package com.projetservice.controller;
 
+import com.projetservice.client.TacheClient;
 import com.projetservice.dto.projetDto;
 import com.projetservice.model.FullProjectResponse;
 import com.projetservice.service.ProjetService;
@@ -11,10 +12,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/projets")
+//@CrossOrigin(origins = "http://localhost:4200")
 public class ProjetController {
 
     @Autowired
     private ProjetService projetService;
+    @Autowired
+    TacheClient tacheClient;
 
     @PostMapping
     public ResponseEntity<projetDto> createProjet(@RequestBody projetDto projetDto) {
@@ -48,6 +52,7 @@ public class ProjetController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteProjet(@PathVariable int id) {
+//        tacheClient.deleteTachesByProjetId(id);
         projetService.deleteProjet(id);
         return ResponseEntity.noContent().build();
     }
